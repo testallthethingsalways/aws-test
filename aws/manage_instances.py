@@ -65,19 +65,17 @@ class ManageInstances():
 
         instance_list = self.get_instances_by_id(instance_id)
 
-        for part in instance_list:
-            instances = part['Instances']
+        for reservation in instance_list:
+            instances = reservation['Instances']
             for inst in instances:
-                if inst['InstanceId'] == instance_id and \
-                        inst['State']['Name'] == state:
-                    return
-                else:
+                if inst['InstanceId'] != instance_id and \
+                        inst['State']['Name'] != state:
                     sleep(1)
                     self.wait_for_instance_state(instance_id, state)
 
     def terminate_instance_by_id(self, instance_id):
         "Method to terminate instance by id"
 
-        print('Terminated all instances...')
+        print('Terminated instance by id: %s...' % instance_id)
 
         self.client.terminate_instances(InstanceIds=[instance_id])
