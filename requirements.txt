@@ -1,0 +1,4 @@
+boto3==1.7.4
+flake8==3.2.1
+pycodestyle==2.2.0
+pytest==3.0.4
