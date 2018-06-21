@@ -16,9 +16,11 @@ One E2E test to start and terminate an EC2 instance with assertions for:
 * the expected instance region
 * the instance having the expected type
 * the instance having the expected tag
-* the expected number of instances to be running
+The test also confirms the expected instance to be running
 
 ## Further tests
+If the EC2 instance never reaches the expected state (running/terminated) the test will not end. Next I would add pytest-timeout and give the test a reasonable timeout.
+
 If the state of the AWS region is important we could assert on the number and type of instances already existing
 
 If testing the API itself is important we could add tests to cover
